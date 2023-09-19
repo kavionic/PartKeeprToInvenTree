@@ -112,12 +112,8 @@ class PKPart(object):
         for distributorData in data.get('distributors', []):
             distributor = PKDistributor(distributorData)
             if distributor.OrderNumber == "":
-                if distributor.Name == "eBay":
-                    distributor.OrderNumber = self.Name
-                    print("Set order number for %s from dist %s to %s" % (self.Name, distributor.Name, self.Name))
-                else:
-                    print("Part %s from dist %s does not have a part number" % (self.Name, distributor.Name))
-                    raise "Broken distributor"
+                print("Part %s from dist %s does not have a part number" % (self.Name, distributor.Name))
+                raise "Broken distributor"
             self.Distributors.append(distributor)
 
         self.Manufacturers = []
